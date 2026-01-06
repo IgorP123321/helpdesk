@@ -1,0 +1,58 @@
+import random
+class ticket:
+    def __init__(self,client_name,problem_description,priority):
+        self.client_name = client_name
+        self.problem_description = problem_description
+        self.priority = priority
+        self.status = "Open"
+        self.ticket_id = random.randint(100,999)
+    def resolve(self):
+        self.status = "Resolved"
+        print(f"Ticket {self.ticket_id} has been marked as Resolved.")
+    def show_info(self,):
+        print(f"Id: {self.ticket_id} Nazwa: {self.client_name} ")
+        print(f"Problems: {self.problem_description}")
+        print(f"Priority: {self.priority}")
+        print(f"Status Problemu: {self.status}")
+        print(f"-" * 20 )
+class HelpDesk:
+    def __init__(self):
+        self.all_tickets = []
+    def add_tickets(self,t):
+        self.all_tickets.append(t)
+        print(f"ticket: {t.ticket_id} add to the system")
+    def display_all(self):
+        for ticket in self.all_tickets:
+            ticket.show_info()
+    def resolve_ticket(self, t_id):
+        for t in self.all_tickets:
+            if t.ticket_id == t_id:
+             t.resolve()
+             return
+        print("Error, Dont find products on the id!")
+    def remove_resolved(self):
+        self.all_tickets = [ t for t in self.all_tickets if t.status != "Resolved" ]
+        print("All resolved tickets have been removed.")
+    def save_data(self):
+        with open("tickets.txt", "w") as f:
+            for t in self.all_tickets:
+                f.write(f"{t.ticket_id};{t.client_name};{t.problem_description};{t.priority};{t.status}\n")
+        print("File has been saved")
+# Tworzymy system
+my_desk = HelpDesk()
+
+#  Tworzymy bilet
+tick1 = ticket("Marek", "Nie pamiętam hasła", 3)
+tick2 = ticket("Igor", "Error 404", 5 )
+
+my_desk.add_tickets(tick1)
+my_desk.add_tickets(tick2)
+my_desk.resolve_ticket(tick1.ticket_id)
+#  Usuwamy rozwiązane bilety
+print("\n--- Cleaning up... ---")
+my_desk.remove_resolved()
+
+# Sprawdzamy co zostało
+print("\n--- Final List ---")
+my_desk.display_all()
+my_desk.save_data()
