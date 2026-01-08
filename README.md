@@ -1,26 +1,34 @@
-# System Zarządzania HelpDeskiem (Python OOP)
+# HelpDesk System & QA Automation Suite 🚀
 
-Mój autorski projekt systemu do obsługi zgłoszeń (ticketów), stworzony z myślą o nauce programowania obiektowego (OOP) oraz automatyzacji procesów.
+## 📖 O projekcie
+System HelpDesk to techniczna aplikacja zbudowana w języku Python, służąca do ewidencji i zarządzania zgłoszeniami serwisowymi. Projekt demonstruje praktyczne zastosowanie **programowania obiektowego (OOP)** oraz nowoczesnych metod **zapewnienia jakości (QA)**. Jako osoba z wykształceniem mechatronicznym, skupiam się na budowaniu rozwiązań, które są odporne na błędy i łatwe w weryfikacji.
 
 ## 🚀 Kluczowe Funkcjonalności
-- **Modelowanie Obiektowe:** Wykorzystanie klas do reprezentacji biletów (Tickets) i logiki zarządzania.
-- **Automatyzacja Priorytetów:** System automatycznie kategoryzuje zgłoszenia na podstawie danych wejściowych.
-- **Walidacja Danych:** Zabezpieczenie przed błędnym wprowadzaniem statusów i identyfikatorów.
+* **Modelowanie Obiektowe:** Wykorzystanie klasy `Ticket` do precyzyjnej reprezentacji zgłoszeń (imię klienta, opis, priorytet).
+* **Automatyzacja Statusów:** Logika biznesowa zarządzająca cyklem życia zgłoszenia od otwarcia (`Open`) do rozwiązania (`Resolved`).
+* **Walidacja Danych:** System dba o to, aby zgłoszenia posiadały kompletnie zdefiniowane parametry przed ich przetworzeniem.
+* **Logowanie Zdarzeń:** Mechanizm zapisu zgłoszeń do zewnętrznego pliku tekstowego (`tickets.txt`), co imituje działanie bazy danych.
 
-## 🛠 Technologie
-- **Język:** Python 3.x
-- **Narzędzia:** VS Code, Git/GitHub
-- **Kierunek rozwoju:** QA Automation (Testy Automatyczne)
+## 🧪 Automatyzacja Testów (Framework Pytest)
+Głównym sercem projektu jest rozbudowany zestaw testów automatycznych, który pozwala na błyskawiczną weryfikację poprawności działania systemu. Zastosowane podejście testowe obejmuje:
+
+* **Testy Jednostkowe (Unit Tests):** Weryfikacja, czy obiekty klasy `Ticket` są poprawnie inicjalizowane.
+* **Testy Wartości Brzegowych (Boundary Testing):** Sprawdzenie, jak system zachowuje się przy ekstremalnie długich nazwach (stress test) oraz pustych opisach.
+* **Testy Negatywne:** Upewnienie się, że system nie pozwala na nieprawidłowe stany (np. sprawdzenie, czy nowy bilet domyślnie nie jest ustawiony jako rozwiązany).
+* **Testy Przejść Stanów (State Transition):** Automatyczna weryfikacja, czy metoda `.resolve()` poprawnie zmienia status zgłoszenia.
+
+## 🛠 Technologie i Narzędzia
+* **Język:** Python 3.x
+* **Framework Testowy:** Pytest
+* **Kontrola Wersji:** Git / GitHub
+* **Środowisko:** VS Code
 
 ## 📂 Struktura Projektu
-- `main.py` - Główna logika aplikacji i klasy OOP.
-- `tests/` -  Testy automatyczne w frameworku Pytest.
+* `appy.py" – Rdzeń aplikacji: logika biznesowa i definicja klasy `Ticket`.
+* `test_logic.py` – Skrypty testowe zawierające zautomatyzowane scenariusze QA.
+* `tickets.txt` – Plik wynikowy z zapisanymi danymi zgłoszeń.
 
-## 🤖 Rozwój w stronę AI (Roadmap)
-W związku z moimi zainteresowaniami w obszarze **AI Test Automation** , planuję rozbudować projekt o:
-- Klasyfikację biletów z wykorzystaniem prostych modeli NLP.
-- Automatyczne generowanie odpowiedzi na zgłoszenia przy użyciu API AI.
-
-## 📖 Jak uruchomić
-1. Sklonuj repozytorium: `git clone https://github.com/IgorP123321/helpdesk.git`
-2. Uruchom: `python main.py`
+## ⚙️ Jak uruchomić i testować
+1. **Sklonuj repozytorium:**
+   ```bash
+   git clone [https://github.com/IgorP123321/helpdesk.git](https://github.com/IgorP123321/helpdesk.git)
