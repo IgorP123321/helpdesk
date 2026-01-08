@@ -14,10 +14,10 @@ Mój autorski projekt systemu do obsługi zgłoszeń (ticketów), stworzony z my
 
 ## 📂 Struktura Projektu
 - `main.py` - Główna logika aplikacji i klasy OOP.
-- `tests/` - (W trakcie realizacji) Testy automatyczne w frameworku Pytest.
+- `tests/` -  Testy automatyczne w frameworku Pytest.
 
 ## 🤖 Rozwój w stronę AI (Roadmap)
-W związku z moimi zainteresowaniami w obszarze **AI Test Automation** (ogłoszenie Sii), planuję rozbudować projekt o:
+W związku z moimi zainteresowaniami w obszarze **AI Test Automation** , planuję rozbudować projekt o:
 - Klasyfikację biletów z wykorzystaniem prostych modeli NLP.
 - Automatyczne generowanie odpowiedzi na zgłoszenia przy użyciu API AI.
 

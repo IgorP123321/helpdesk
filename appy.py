@@ -1,5 +1,5 @@
 import random
-class ticket:
+class Ticket:
     def __init__(self,client_name,problem_description,priority):
         self.client_name = client_name
         self.problem_description = problem_description
@@ -42,8 +42,8 @@ class HelpDesk:
 my_desk = HelpDesk()
 
 #  Tworzymy bilet
-tick1 = ticket("Marek", "Nie pamiętam hasła", 3)
-tick2 = ticket("Igor", "Error 404", 5 )
+tick1 = Ticket("Marek", "Nie pamiętam hasła", 3)
+tick2 = Ticket("Igor", "Error 404", 5 )
 
 my_desk.add_tickets(tick1)
 my_desk.add_tickets(tick2)
