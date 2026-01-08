@@ -1,28 +1,33 @@
 import pytest
-from appy import ticket
-def test_czy_bilet_ma_tytul():
-    bilet = ticket("Problem z kablem","Kabel jest dlugi","High")
-    assert bilet.client_name == "Problem z kablem"
-def test_kompletny_bilet():
-    bilet3 = ticket("Marek","Problem z komputerem","High")
-    assert bilet3.client_name == "Marek"
-    assert bilet3.problem_description == "Problem z komputerem"
-    assert bilet3.priority == "High"
-def test_gdy_pusty():
-    pusty_bilet = ticket("Igor","","Low")
-    assert pusty_bilet.client_name == "Igor"
-    assert pusty_bilet.problem_description == ""
-    assert pusty_bilet.priority == "Low"
-def test_gdy_dlugie():
-    dlugi_tytul = ticket("KAKSDKSDAKSDAKSKDAKSADKSADKSDKSADKSDAKSKDAKSDAKSDAKSDAKDSAKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK","Problem","High")
-    assert dlugi_tytul.client_name == "KAKSDKSDAKSDAKSKDAKSADKSADKSDKSADKSDAKSKDAKSDAKSDAKSDAKDSAKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
-def test_zmiana_statusu():
-    ticket_new = ticket("Małgorzata","Awaria plc","Low")
+from appy import Ticket
+
+def test_ticket_has_client_name():
+    ticket = Ticket("Cable problem", "Cable is too long", "High")
+    assert ticket.client_name == "Cable problem"
+
+def test_complete_ticket_creation():
+    ticket = Ticket("Marek", "Computer problem", "High")
+    assert ticket.client_name == "Marek"
+    assert ticket.problem_description == "Computer problem"
+    assert ticket.priority == "High"
+
+def test_ticket_with_empty_description():
+    empty_ticket = Ticket("Igor", "", "Low")
+    assert empty_ticket.client_name == "Igor"
+    assert empty_ticket.problem_description == ""
+    assert empty_ticket.priority == "Low"
+
+def test_ticket_with_very_long_client_name():
+    long_name = "A" * 500  
+    long_ticket = Ticket(long_name, "Problem", "High")
+    assert long_ticket.client_name == long_name
+
+def test_status_change_to_resolved():
+    ticket_new = Ticket("Margaret", "PLC Failure", "Low")
     assert ticket_new.status == "Open"
-    
     ticket_new.resolve()
     assert ticket_new.status == "Resolved"
-def test_gdy_ticket_close():
-    ticket3 = ticket("Małgosia","Wirus","High")
-    assert ticket3.status == "Resolved"
-    
+def test_new_ticket_is_not_resolved_by_default():
+    ticket_new = Ticket("Margaret", "Virus", "High")
+    # Test negatywny 
+    assert ticket_new.status != "Resolved"
